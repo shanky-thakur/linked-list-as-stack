@@ -1,0 +1,66 @@
+public class stackImplementation {
+    static class LinkedList{
+        static class Node {
+            int data;
+            Node next;
+            Node previous;
+
+            public Node(int data) {
+                this.data = data;
+            }
+        }
+        Node head = null;
+        Node tail = null;
+        public void add(int data){
+            Node newnode = new Node(data);
+            if(head==null){
+                head = tail = newnode;
+                newnode.previous = head;
+                tail.previous = newnode;
+            }
+            else{
+                tail.next = newnode;
+                newnode.previous = tail;
+                tail = newnode;
+            }
+        }
+        public void removeTop(){
+            if(head==null){
+                System.out.println("stack is empty");
+            }
+            else{
+                tail = tail.previous;
+            }
+        }
+        public void peek(){
+            if(head==null){
+                System.out.println("stack is empty");
+            }
+            else{
+                System.out.println(tail.data);
+            }
+        }
+    }
+    static class stack{
+        LinkedList list = new LinkedList();
+        public void push(int a){
+            list.add(a);
+        }
+        public void pop(){
+            list.removeTop();
+        }
+        public void peek(){
+            list.peek();
+        }
+    }
+
+    public static void main(String[] args) {
+        stack stack = new stack();
+        stack.push(12);
+        stack.push(23);
+        stack.push(34);
+        stack.peek();
+        stack.pop();
+        stack.peek();
+    }
+}
